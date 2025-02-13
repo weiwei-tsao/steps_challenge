@@ -1,19 +1,29 @@
-// app.js
 App({
   onLaunch() {
-    // 展示本地存储能力
-    const logs = wx.getStorageSync('logs') || [];
-    logs.unshift(Date.now());
-    wx.setStorageSync('logs', logs);
-
-    // 登录
-    wx.login({
-      success: (res) => {
-        // 发送 res.code 到后台换取 openId, sessionKey, unionId
-      },
-    });
+    // 检查微信运动权限
+    this.checkWeRunAuth();
+    // 初始化步数目标
+    const wxService = require('./services/wx');
+    this.globalData.stepTarget = wxService.storage.getStepTarget();
   },
+
   globalData: {
     userInfo: null,
+    hasWeRunAuth: false,
+    stepTarget: 10000, // 默认目标步数
+  },
+
+  async checkWeRunAuth() {
+    try {
+      const res = await wx.getSetting();
+      this.globalData.hasWeRunAuth = !!res.authSetting['scope.werun'];
+      if (!this.globalData.hasWeRunAuth) {
+        // 尝试获取授权
+        await wx.authorize({ scope: 'scope.werun' });
+        this.globalData.hasWeRunAuth = true;
+      }
+    } catch (error) {
+      console.error('检查微信运动授权失败:', error);
+    }
   },
 });

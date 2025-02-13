@@ -1,10 +1,70 @@
-/**app.wxss**/
+page {
+  /* 主题色 */
+  --primary-color: #1296db;
+  --success-color: #67c23a;
+  --warning-color: #e6a23c;
+  --danger-color: #f56c6c;
+
+  /* 文字颜色 */
+  --text-main: #303133;
+  --text-normal: #606266;
+  --text-minor: #909399;
+
+  /* 边框和背景 */
+  --border-color: #dcdfe6;
+  --bg-color: #f5f7fa;
+
+  /* 间距 */
+  --spacing-mini: 4rpx;
+  --spacing-small: 8rpx;
+  --spacing-normal: 16rpx;
+  --spacing-large: 24rpx;
+  --spacing-xl: 32rpx;
+}
+
+/* 通用容器 */
 .container {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  padding: 200rpx 0;
+  padding: 20rpx;
   box-sizing: border-box;
-} 
+}
+
+/* 卡片样式 */
+.card {
+  background: #fff;
+  border-radius: 12rpx;
+  padding: 20rpx;
+  margin-bottom: 20rpx;
+  box-shadow: 0 2rpx 12rpx 0 rgba(0, 0, 0, 0.1);
+}
+
+/* 文本样式 */
+.text-primary {
+  color: var(--primary-color);
+}
+.text-success {
+  color: var(--success-color);
+}
+.text-warning {
+  color: var(--warning-color);
+}
+.text-danger {
+  color: var(--danger-color);
+}
+
+/* 布局工具类 */
+.flex {
+  display: flex;
+}
+.flex-column {
+  flex-direction: column;
+}
+.flex-center {
+  justify-content: center;
+  align-items: center;
+}
+.flex-between {
+  justify-content: space-between;
+}
+.flex-around {
+  justify-content: space-around;
+}
